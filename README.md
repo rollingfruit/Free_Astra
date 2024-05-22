@@ -25,7 +25,7 @@ Free-Astra 是一个基于DIY-Astra（后文有详细介绍）开发而来的 Fl
 
 
 ## 需求
-要运行 DIY-Astra 应用程序，您需要安装以下依赖项：
+要运行 Free-Astra 应用程序，您需要安装以下依赖项：
 - Python 3.x
 - Flask
 - Flask-SocketIO
