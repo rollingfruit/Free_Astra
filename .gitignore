@@ -1,0 +1,39 @@
+# 忽略环境变量文件
+# Python相关文件
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+.venv/
+.env/
+*.env
+
+# 测试文件
+cam.py
+whisper.py
+
+# 音频文件图片文件
+*.mp3
+*.jpg
+
+
+# 日志文件
+*.log
+
+# 虚拟环境文件
+.venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE配置文件
+.idea/
+.vscode/
+
+# 操作系统生成的文件
+.DS_Store
+Thumbs.db

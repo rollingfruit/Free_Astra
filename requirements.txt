@@ -1,0 +1,8 @@
+flask
+flask-socketio
+opencv-python
+pydub
+google-generativeai
+pillow
+requests
+openai

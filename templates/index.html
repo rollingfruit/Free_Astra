@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Camera Feed</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<!-- html中 -->
+<body>
+    <div class="container">
+        <div class="video-container">
+            <img id="video" src="">
+        </div>
+        <div class="text-container" id="text-container"></div>
+        <!-- 录音按钮 -->
+        <!-- <button id="recordButton">Record</button> -->
+        <div class="control-container">
+            <button id="startButton">开始聊天</button>
+            <button id="stopButton" disabled>结束聊天</button>
+            <!-- <div class="interval-container">
+                <input type="number" id="interval-input" placeholder="Default 2 seconds" min="1">
+                <button onclick="setInterval()">Set Capture Interval</button>
+            </div> -->
+            <button id="control-button" onclick="toggleApp()">
+                <span>⏹ Stop</span>
+            </button>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
+
