@@ -1,18 +1,31 @@
 
-# DIY-Astra
+# Free-Astra
 
-DIY-Astra is a Flask application that utilizes computer vision and natural language processing to create an interactive AI assistant. The application captures live video feed from a webcam, analyzes the captured images using the Google AI API, and generates text responses based on the visual input. The generated text responses are then converted to audio using the ElevenLabs API and played back to the user.
+## 项目介绍
+![演示](./frames/演示.png)
+在 GPT-4 的视频聊天功能尚未上线之际，开发了一个简易版本。借鉴谷歌发布的多模态 AI 项目 Project Astra，构建了一个基础的视觉聊天模型。该模型可以根据摄像头捕获的图像和用户的语言进行互动，并实时生成语音输出。目前，模型的英语效果最佳，中文也有一定的支持。演示程序未经加速和剪辑，虽然视觉反应较快，但文字转语音存在延迟。
 
-## Features
-- Live video feed capture from the webcam
-- Image analysis using the Google AI API
-- Text generation based on visual input
-- Text-to-speech conversion using the ElevenLabs API
-- Real-time audio playback of generated responses
-- Web-based user interface for interaction and control
+基于 Github 项目 DIY-Astra 进行改进，现在用户可以使用摄像头自由聊天。Gemini 1.5 Flash 的效果非常出色，不敢想象以后手机、甚至个人穿戴设备都被这些低功耗AI模型改造一遍的时代。
 
-## Requirements
-To run the DIY-Astra application, you need to have the following dependencies installed:
+本项目视频演示地址：https://www.bilibili.com/video/BV1Nn4y1o7CK/?vd_source=97fb05507112998874bd946470f720ff
+DIY-Astra 项目地址：https://github.com/Doriandarko/DIY-Astra
+
+Free-Astra 是一个基于DIY-Astra（后文有详细介绍）开发而来的 Flask 应用程序，利用计算机视觉和自然语言处理创建一个交互式 AI 助手。该应用程序从网络摄像头捕获实时视频流，使用 Google AI API 分析捕获的图像，并根据视觉输入生成文本响应。生成的文本响应随后使用 ElevenLabs API 转换为音频，并播放给用户。
+
+## 功能
+- 采用静默检测算法，实现自由录音
+- 集成 OpenAI 的 Whisper 实现语音转文本
+- 从网络摄像头捕获实时视频流
+- 使用 Google AI API 进行图像分析
+- 根据视觉输入生成文本
+- 使用 ElevenLabs API 将文本转换为语音
+- 实时播放生成的音频响应
+- 基于 Web 的用户界面进行交互和控制
+
+
+
+## 需求
+要运行 DIY-Astra 应用程序，您需要安装以下依赖项：
 - Python 3.x
 - Flask
 - Flask-SocketIO
@@ -21,58 +34,66 @@ To run the DIY-Astra application, you need to have the following dependencies in
 - Google Generative AI Client Library
 - Pillow (PIL)
 - Requests
+- openai
 
-You also need to have valid API keys for the following services:
+需要拥有以下服务的有效 API 密钥：
 - Google AI API (GOOGLE_API_KEY)
 - ElevenLabs API (ELEVENLABS_API_KEY)
+- OpenAI API  (OPENAI_API_KEY)
+请将这三个密钥添加到项目根目录的 `.env` 文件中，并由操作系统读取：
 
-## Installation
-1. Clone the repository:
+## 安装
+1. 克隆仓库：
    ```bash
-   git clone https://github.com/your-username/diy-astra.git
+   git clone https://github.com/your-username/free-astra.git
    ```
 
-2. Navigate to the project directory:
+2. 进入项目目录：
    ```bash
-   cd diy-astra
+   cd free-astra
    ```
 
-3. Install the required dependencies:
+3. 安装所需的依赖项：
    ```bash
    pip install -r requirements.txt
    ```
 
-4. Set up the API keys:
-   - Replace `GOOGLE_API_KEY` in `app.py` with your Google AI API key.
-   - Replace `ELEVENLABS_API_KEY` in `app.py` with your ElevenLabs API key.
+4. 设置 API 密钥：
+   - 在 `.env` 文件中设置您的 Google AI API 密钥、 ElevenLabs API 密钥和 OpenAI API 秘钥。
+类似如下方式：
+```
+GOOGLE_API_KEY = ''
+ELEVENLABS_API_KEY = ''
+OPENAI_API_KEY = ''
+```
 
-5. Run the application:
+5. 运行应用程序：
    ```bash
    python app.py
    ```
 
-6. Open your web browser and navigate to `http://localhost:5001` to access the DIY-Astra interface.
+6. 打开您的网络浏览器并导航到 `http://localhost:5001` 以访问 free-astra 界面。
 
-## Usage
-1. Make sure your webcam is connected and accessible.
-2. Launch the DIY-Astra application by running `python app.py`.
-3. The application will open in your default web browser.
-4. The live video feed from your webcam will be displayed in the interface.
-5. DIY-Astra will continuously capture images, analyze them using the Google AI API, and generate text responses based on the visual input.
-6. The generated text responses will be displayed in the text container below the video feed.
-7. The text responses will also be converted to audio using the ElevenLabs API and played back in real-time.
-8. You can stop the application by clicking the "Stop" button in the interface. To resume, click the "Resume" button.
+## 使用方法
+1. 确保您的网络摄像头已连接并可访问。
+2. 运行 `python app.py` 启动 free-astra 应用程序。
+3. 应用程序将在您的默认浏览器中打开。
+4. 网络摄像头的实时视频流将显示在界面中。
+5. 点击“开始”按钮，开始聊天。说话结束录音自动发送后端分析。
+6. free-astra 将连续捕获图像，使用 Google AI API 进行分析，并根据视觉输入生成文本响应。
+7. 生成的文本响应将显示在视频流下方的文本容器中。
+8. 文本响应也将使用 ElevenLabs API 转换为音频并实时播放。
+9. 您可以通过点击界面中的“停止”按钮停止应用程序。要恢复，请点击“恢复”按钮。
 
-## File Structure
-- `app.py`: The main Flask application file containing the server-side logic.
-- `templates/index.html`: The HTML template for the user interface.
-- `static/css/styles.css`: The CSS stylesheet for styling the user interface.
-- `static/js/script.js`: The JavaScript file for client-side interactions and socket communication.
-- `requirements.txt`: The list of required Python dependencies.
+## 文件结构
+- `app.py`: 包含服务器端逻辑的主 Flask 应用程序文件。
+- `templates/index.html`: 用户界面的 HTML 模板。
+- `static/css/styles.css`: 用于样式化用户界面的 CSS 样式表。
+- `static/js/script.js`: 用于客户端交互和套接字通信的 JavaScript 文件。
+- `requirements.txt`: 所需的 Python 依赖项列表。
 
-## Contributing
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+## 贡献
+欢迎贡献！如果您发现任何问题或有改进建议，请打开问题或提交拉取请求。
 
-## License
-This project is licensed under the MIT License.
-
+## 许可证
+本项目使用 MIT 许可证。
