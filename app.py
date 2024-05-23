@@ -14,23 +14,26 @@ from PIL import Image
 import numpy as np
 import errno
 import os
+from dotenv import load_dotenv
 
 from openai import OpenAI
 import tempfile
-client = OpenAI()
 # Initialize Flask app and SocketIO
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins='*')
 
 
+# 加载.env文件中的配置
+load_dotenv()
 # 读取环境变量
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 ELEVENLABS_API_KEY = os.getenv('ELEVENLABS_API_KEY')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
-# Voice ID for ElevenLabs API (I using a standard voice but make sure you have access to it)
+# Voice ID for ElevenLabs API (可以在这个url选择VOICE_ID："https://api.elevenlabs.io/v1/voices")
 VOICE_ID = 'yoZ06aMxZJJ28mfd3POQ'
 
+client = OpenAI(api_key=OPENAI_API_KEY)
 # Configure the Google AI client
 genai.configure(api_key=GOOGLE_API_KEY)
 model = genai.GenerativeModel('models/gemini-1.5-flash-latest')

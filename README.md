@@ -25,8 +25,8 @@ Free-Astra 是一个基于DIY-Astra（后文有详细介绍）开发而来的 Fl
 
 
 ## 需求
-要运行 Free-Astra 应用程序，您需要安装以下依赖项：
-- Python 3.x
+要运行 Free-Astra 应用程序，您需要安装以下依赖项，直接通过后文 `pip install -r requirements.txt` 安装：
+- Python 3.x(本机测的3.10的conda环境)
 - Flask
 - Flask-SocketIO
 - OpenCV (cv2)
@@ -63,9 +63,9 @@ Free-Astra 是一个基于DIY-Astra（后文有详细介绍）开发而来的 Fl
    - 在 `.env` 文件中设置您的 Google AI API 密钥、 ElevenLabs API 密钥和 OpenAI API 秘钥。
 类似如下方式：
 ```
-GOOGLE_API_KEY = ''
-ELEVENLABS_API_KEY = ''
-OPENAI_API_KEY = ''
+GOOGLE_API_KEY=<不要尖括号，替换成你的 GOOGLE_API_KEY>
+ELEVENLABS_API_KEY=<不要尖括号，替换成你的 ELEVENLABS_API_KEY>
+OPENAI_API_KEY=<不要尖括号，替换成你的 OPENAI_API_KEY>
 ```
 
 5. 运行应用程序：

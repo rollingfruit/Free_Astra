@@ -6,3 +6,4 @@ google-generativeai
 pillow
 requests
 openai
+python-dotenv
